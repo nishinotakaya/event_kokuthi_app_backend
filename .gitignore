@@ -1,0 +1,59 @@
+# See https://www.toptal.com/developers/gitignore/api/rails
+*.rbc
+capybara-*.html
+.rspec
+/log
+/tmp
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/db/*.sqlite3-*.journal
+/public/system
+/coverage/
+/spec/tmp
+*.orig
+rerun.txt
+pickle-email-*.html
+
+# Ignore all environment variables
+.env
+.env.*
+!.env.example
+
+# Ignore bundler config
+/.bundle
+
+# Ignore all logfiles and tempfiles
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+/public/assets
+
+# Ignore master key
+/config/master.key
+/config/credentials.yml.enc
+
+# Ignore node_modules
+node_modules/
+
+# macOS
+.DS_Store
+
+# Bootsnap cache
+/tmp/cache/bootsnap/
+
+# Playwright browsers
+/tmp/playwright/

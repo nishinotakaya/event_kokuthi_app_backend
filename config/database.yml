@@ -1,0 +1,19 @@
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: storage/development.sqlite3
+
+test:
+  <<: *default
+  database: storage/test.sqlite3
+
+# Production uses DATABASE_URL (Heroku PostgreSQL)
+# Heroku sets DATABASE_URL automatically — the url: key picks it up
+# and Rails auto-detects the pg adapter from the postgres:// scheme
+production:
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

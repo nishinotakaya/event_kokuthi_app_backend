@@ -1,0 +1,83 @@
+{
+  "name": "event-notify-api",
+  "description": "Rails API backend for event notification automation",
+  "keywords": ["rails", "playwright", "actioncable", "sidekiq"],
+  "repository": "",
+  "logo": "",
+  "success_url": "/up",
+  "scripts": {
+    "postdeploy": "bundle exec rails db:migrate"
+  },
+  "env": {
+    "RAILS_MASTER_KEY": {
+      "description": "Rails master key for credentials decryption",
+      "required": true
+    },
+    "FRONTEND_URL": {
+      "description": "Vercel frontend URL (e.g. https://your-app.vercel.app)",
+      "required": false
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for AI features",
+      "required": false
+    },
+    "CONPASS__KOKUCIZE_MAIL": {
+      "description": "こくチーズ / connpass login email",
+      "required": false
+    },
+    "CONPASS_KOKUCIZE_PASSWORD": {
+      "description": "こくチーズ / connpass login password",
+      "required": false
+    },
+    "PEATIX_EMAIL": {
+      "description": "Peatix login email",
+      "required": false
+    },
+    "PEATIX_PASSWORD": {
+      "description": "Peatix login password",
+      "required": false
+    },
+    "PEATIX_CREATE_URL": {
+      "description": "Peatix event create URL (includes group ID)",
+      "required": false
+    },
+    "LME_EMAIL": {
+      "description": "LME (step.lme.jp) login email",
+      "required": false
+    },
+    "LME_PASSWORD": {
+      "description": "LME login password",
+      "required": false
+    },
+    "LME_BOT_ID": {
+      "description": "LME bot ID",
+      "required": false
+    },
+    "LME_BASE_URL": {
+      "description": "LME base URL",
+      "required": false
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0"
+    },
+    {
+      "plan": "heroku-redis:mini"
+    }
+  ],
+  "buildpacks": [
+    { "url": "heroku/nodejs" },
+    { "url": "heroku/ruby" }
+  ]
+}

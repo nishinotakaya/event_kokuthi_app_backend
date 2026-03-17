@@ -1,0 +1,9 @@
+{
+  "name": "rails-backend",
+  "version": "1.0.0",
+  "description": "Playwright npm package for playwright-ruby-client gem",
+  "private": true,
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}
