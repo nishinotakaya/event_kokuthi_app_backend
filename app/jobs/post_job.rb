@@ -39,7 +39,18 @@ class PostJob < ApplicationJob
     Playwright.create(playwright_cli_executable_path: playwright_path) do |playwright|
       browser = playwright.chromium.launch(
         headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-blink-features=AutomationControlled'],
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-blink-features=AutomationControlled',
+          '--disable-dev-shm-usage',      # コンテナ内 /dev/shm(64MB) 枯渇クラッシュを防ぐ（最重要）
+          '--disable-gpu',                # GPUなし環境でのクラッシュ防止
+          '--disable-extensions',
+          '--disable-default-apps',
+          '--no-first-run',
+          '--disable-background-networking',
+          '--disable-sync',
+        ],
       )
 
       broadcast(job_id, type: 'log', message: "🚀 #{sites.length}サイトを並列投稿開始...")
