@@ -37,8 +37,8 @@ RUN npx playwright install chromium --with-deps 2>/dev/null || true
 # Application code
 COPY . .
 
-# DB migrate on start (SQLite for dev)
-RUN rails db:create db:migrate RAILS_ENV=development 2>/dev/null || true
-
-EXPOSE 3001
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3001"]
+# Heroku: PORT env var を使う（heroku container では $PORT が動的に割り当てられる）
+# DB migrate は起動時に行う（heroku release phase または手動 heroku run rails db:migrate）
+EXPOSE 3000
+CMD bundle exec rails db:migrate RAILS_ENV=production 2>/dev/null; \
+    bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000}
